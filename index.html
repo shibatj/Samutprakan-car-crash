@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ศูนย์ข้อมูลเชิงสถิติ: พฤติกรรมการใช้รถและการซ่อมบำรุง สมุทรปราการ</title>
+    <title>ศูนย์ข้อมูลเชิงสถิติ: สมุทรปราการ (Overview & Breakdown)</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
             font-family: 'Sarabun', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8f9fa;
+            background-color: #f4f6f9;
             color: #333;
             line-height: 1.6;
             margin: 0;
@@ -28,11 +28,7 @@
             padding: 30px 20px;
             text-align: center;
         }
-        header h1 {
-            margin: 0;
-            font-size: 28px;
-            font-weight: 600;
-        }
+        header h1 { margin: 0; font-size: 26px; font-weight: 600; }
         .breadcrumb {
             background: #e9ecef;
             padding: 12px 25px;
@@ -40,19 +36,29 @@
             color: #555;
             border-bottom: 1px solid #ddd;
         }
-        main {
-            padding: 30px 40px;
-        }
-        section {
-            margin-bottom: 50px;
-        }
+        main { padding: 30px 40px; }
+        section { margin-bottom: 50px; }
+        
+        /* หัวข้อหลัก */
         h2 {
             color: #003366;
-            font-size: 22px;
+            font-size: 20px;
             border-bottom: 2px solid #003366;
             padding-bottom: 10px;
             margin-bottom: 20px;
         }
+        
+        /* หัวข้อย่อยสำหรับส่วนแยกกราฟ */
+        h3.section-subtitle {
+            background: #e6f2ff;
+            color: #004b87;
+            padding: 10px 15px;
+            border-left: 5px solid #004b87;
+            font-size: 16px;
+            margin-top: 40px;
+            border-radius: 4px;
+        }
+
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -60,25 +66,13 @@
         }
         .chart-wrapper {
             width: 100%;
-            margin: 10px 0;
             padding: 20px;
             background: #fff;
             border: 1px solid #eaeaea;
             border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
             box-sizing: border-box;
         }
-        .reference-box {
-            background: #f1f8ff;
-            border-left: 5px solid #0366d6;
-            padding: 20px;
-            margin-top: 40px;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-        .reference-box h3 { margin-top: 0; color: #0366d6; }
-        ul { padding-left: 20px; }
-        li { margin-bottom: 10px; }
         table {
             width: 100%;
             border-collapse: collapse;
@@ -87,14 +81,22 @@
         }
         table th, table td {
             border: 1px solid #dee2e6;
-            padding: 12px;
+            padding: 10px;
             text-align: center;
         }
-        table th {
-            background-color: #f8f9fa;
-            color: #003366;
+        table th { background-color: #f8f9fa; color: #003366; }
+        .highlight-col { background-color: #e6f2ff; font-weight: bold; color: #003366; }
+        .highlight-col-2 { background-color: #fff0f5; font-weight: bold; color: #c2185b; }
+        
+        .reference-box {
+            background: #f1f8ff;
+            border-left: 5px solid #0366d6;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 4px;
+            font-size: 13px;
         }
-        table tbody tr:hover { background-color: #f1f8ff; }
+        
         footer {
             text-align: center;
             padding: 20px;
@@ -112,151 +114,102 @@
 
     <div class="container">
         <header>
-            <h1>🚗 ศูนย์ข้อมูลเชิงสถิติ: พฤติกรรมการใช้รถและการซ่อมบำรุง</h1>
-            <p style="margin: 8px 0 0 0; opacity: 0.85;">จังหวัดสมุทรปราการ | รายงานสถิติย้อนหลัง 10 ปี (พ.ศ. 2560 - 2569)</p>
+            <h1>📊 ศูนย์ข้อมูลเชิงสถิติ: สมุทรปราการ</h1>
+            <p style="margin: 8px 0 0 0; opacity: 0.85;">รายงานสถิติการใช้รถและการซ่อมบำรุง ย้อนหลัง 10 ปี (พ.ศ. 2560 - 2569)</p>
         </header>
 
         <div class="breadcrumb">
-            หน้าหลัก > ข้อมูลเปิด (Open Data) > <strong>พฤติกรรมการใช้รถประจำวันและอัตราการซ่อมบำรุงแยกประเภท</strong>
+            หน้าหลัก > ข้อมูลเปิด (Open Data) > <strong>ภาพรวมและข้อมูลเจาะลึก (แยกกราฟ)</strong>
         </div>
 
         <main>
             <section>
-                <h2>1. พฤติกรรมและวัตถุประสงค์การใช้รถประจำวัน (Daily Trip Purposes)</h2>
-                <p>ข้อมูลการเดินทางในพื้นที่สมุทรปราการ พบว่าปริมาณการจราจรส่วนใหญ่กระจุกตัวในช่วงเวลาเร่งด่วน บนถนนสายหลักที่มุ่งหน้าสู่นิคมอุตสาหกรรมบางปู บางพลี และรอยต่อกรุงเทพฯ</p>
+                <h2>1. ภาพรวมสถิติยอดรวม (Total Overview)</h2>
+                <p>กราฟเส้นประแสดงแนวโน้มยอดรวมเพื่อวิเคราะห์ภาพรวมการเติบโตของปริมาณการจราจรและงานบริการซ่อมบำรุงในระดับจังหวัด</p>
                 <div class="grid-2">
                     <div class="chart-wrapper">
-                        <canvas id="tripPurposeChart"></canvas>
+                        <canvas id="chartTotalUsage"></canvas>
                     </div>
                     <div class="chart-wrapper">
-                        <canvas id="commuteTrendChart"></canvas>
+                        <canvas id="chartTotalRepair"></canvas>
                     </div>
                 </div>
             </section>
 
             <section>
-                <h2>2. สถิติการเข้าซ่อมรถจำแนกตามประเภท (กราฟแยกรายหมวดหมู่)</h2>
-                <p>กราฟเส้นประ (Dashed Line) ด้านล่างแสดงอัตราการเติบโตของการเข้าใช้อู่ซ่อมรถมาตรฐาน แยกย่อยตามประเภทความเสียหายและการบำรุงรักษา เพื่อให้เห็นถึงความแตกต่างของรอบการซ่อมในแต่ละหมวดหมู่อย่างละเอียดตลอด 10 ปี</p>
-                
-                <div class="grid-2">
-                    <div class="chart-wrapper">
-                        <canvas id="chartBodyPaint"></canvas>
-                    </div>
-                    <div class="chart-wrapper">
-                        <canvas id="chartEngine"></canvas>
-                    </div>
-                    <div class="chart-wrapper">
-                        <canvas id="chartSuspension"></canvas>
-                    </div>
-                    <div class="chart-wrapper">
-                        <canvas id="chartElectrical"></canvas>
-                    </div>
-                </div>
-            </section>
-
-            <section>
-                <h2>3. ข้อมูลสถิติเชิงตาราง (Data Table)</h2>
+                <h2>2. ข้อมูลสถิติเชิงตาราง (Data Table)</h2>
                 <div style="overflow-x: auto;">
                     <table>
                         <thead>
                             <tr>
                                 <th rowspan="2">ปี พ.ศ.</th>
-                                <th colspan="2">พฤติกรรมการเดินทาง (ทริป/วัน)</th>
-                                <th colspan="4">สถิติการเข้าซ่อมรถมาตรฐาน (ครั้ง/ปี)</th>
+                                <th colspan="3">การเดินทาง (ทริป/วัน)</th>
+                                <th colspan="5">การซ่อมรถมาตรฐาน (ครั้ง/ปี)</th>
                             </tr>
                             <tr>
-                                <th>เดินทางไปทำงาน/ธุรกิจ</th>
-                                <th>ขนส่ง/โลจิสติกส์</th>
-                                <th>งานสีและตัวถัง</th>
+                                <th class="highlight-col">รวมการใช้รถ (สุทธิ)</th>
+                                <th>ทำงาน/ธุรกิจ</th>
+                                <th>โลจิสติกส์</th>
+                                <th class="highlight-col-2">รวมการซ่อม (สุทธิ)</th>
+                                <th>งานสี/ตัวถัง</th>
                                 <th>เครื่องยนต์</th>
-                                <th>ช่วงล่าง/เบรก/ยาง</th>
-                                <th>ระบบไฟฟ้า/อื่นๆ</th>
+                                <th>ช่วงล่าง/เบรก</th>
+                                <th>ระบบไฟฟ้า</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td>2569</td><td>850,000</td><td>320,000</td><td>23,200</td><td>17,400</td><td>11,600</td><td>5,800</td></tr>
-                            <tr><td>2568</td><td>820,000</td><td>305,000</td><td>22,000</td><td>16,500</td><td>11,000</td><td>5,500</td></tr>
-                            <tr><td>2567</td><td>795,000</td><td>295,000</td><td>20,800</td><td>15,600</td><td>10,400</td><td>5,200</td></tr>
-                            <tr><td>2566</td><td>760,000</td><td>280,000</td><td>19,600</td><td>14,700</td><td>9,800</td><td>4,900</td></tr>
-                            <tr><td>2565</td><td>735,000</td><td>270,000</td><td>18,000</td><td>13,500</td><td>9,000</td><td>4,500</td></tr>
-                            <tr><td>2564</td><td>680,000</td><td>265,000</td><td>16,000</td><td>12,000</td><td>8,000</td><td>4,000</td></tr>
-                            <tr><td>2563</td><td>695,000</td><td>250,000</td><td>16,400</td><td>12,300</td><td>8,200</td><td>4,100</td></tr>
-                            <tr><td>2562</td><td>720,000</td><td>245,000</td><td>18,400</td><td>13,800</td><td>9,200</td><td>4,600</td></tr>
-                            <tr><td>2561</td><td>690,000</td><td>230,000</td><td>17,400</td><td>13,050</td><td>8,700</td><td>4,350</td></tr>
-                            <tr><td>2560</td><td>665,000</td><td>215,000</td><td>16,400</td><td>12,300</td><td>8,200</td><td>4,100</td></tr>
+                            <tr><td>2569</td><td class="highlight-col">1,170,000</td><td>850,000</td><td>320,000</td><td class="highlight-col-2">58,000</td><td>23,200</td><td>17,400</td><td>11,600</td><td>5,800</td></tr>
+                            <tr><td>2568</td><td class="highlight-col">1,125,000</td><td>820,000</td><td>305,000</td><td class="highlight-col-2">55,000</td><td>22,000</td><td>16,500</td><td>11,000</td><td>5,500</td></tr>
+                            <tr><td>2567</td><td class="highlight-col">1,090,000</td><td>795,000</td><td>295,000</td><td class="highlight-col-2">52,000</td><td>20,800</td><td>15,600</td><td>10,400</td><td>5,200</td></tr>
+                            <tr><td>2566</td><td class="highlight-col">1,040,000</td><td>760,000</td><td>280,000</td><td class="highlight-col-2">49,000</td><td>19,600</td><td>14,700</td><td>9,800</td><td>4,900</td></tr>
+                            <tr><td>2565</td><td class="highlight-col">1,005,000</td><td>735,000</td><td>270,000</td><td class="highlight-col-2">45,000</td><td>18,000</td><td>13,500</td><td>9,000</td><td>4,500</td></tr>
+                            <tr><td>2564</td><td class="highlight-col">945,000</td><td>680,000</td><td>265,000</td><td class="highlight-col-2">40,000</td><td>16,000</td><td>12,000</td><td>8,000</td><td>4,000</td></tr>
+                            <tr><td>2563</td><td class="highlight-col">945,000</td><td>695,000</td><td>250,000</td><td class="highlight-col-2">41,000</td><td>16,400</td><td>12,300</td><td>8,200</td><td>4,100</td></tr>
+                            <tr><td>2562</td><td class="highlight-col">965,000</td><td>720,000</td><td>245,000</td><td class="highlight-col-2">46,000</td><td>18,400</td><td>13,800</td><td>9,200</td><td>4,600</td></tr>
+                            <tr><td>2561</td><td class="highlight-col">920,000</td><td>690,000</td><td>230,000</td><td class="highlight-col-2">43,500</td><td>17,400</td><td>13,050</td><td>8,700</td><td>4,350</td></tr>
+                            <tr><td>2560</td><td class="highlight-col">880,000</td><td>665,000</td><td>215,000</td><td class="highlight-col-2">41,000</td><td>16,400</td><td>12,300</td><td>8,200</td><td>4,100</td></tr>
                         </tbody>
                     </table>
                 </div>
             </section>
 
-            <div class="reference-box">
-                <h3>📑 แหล่งข้อมูลอ้างอิงและจุดตรวจสอบความถูกต้อง (References)</h3>
-                <ul>
-                    <li><strong>สำนักงานนโยบายและแผนการขนส่งและจราจร (สนข.):</strong> รายงานผลการสำรวจพฤติกรรมการเดินทางของประชาชนในเขตกรุงเทพมหานครและปริมณฑล (Travel Behavior Survey)</li>
-                    <li><strong>กรมทางหลวง (DOH):</strong> ระบบรายงานปริมาณจราจรบนทางหลวงสายหลัก</li>
-                    <li><strong>กรมพัฒนาธุรกิจการค้า (DBD) & คปภ.:</strong> ข้อมูลดัชนีการจดทะเบียนอู่ซ่อมรถมาตรฐาน และสถิติการเคลมสินไหมทดแทนแยกตามพื้นที่</li>
-                </ul>
-            </div>
-        </main>
+            <section>
+                <h2>3. ข้อมูลเจาะลึกรายหมวดหมู่ (Detailed Breakdown)</h2>
+                <p>กราฟเส้นประแบบแยกส่วน (Separated Charts) เพื่อใช้ในการวิเคราะห์ข้อมูลเชิงลึกเฉพาะด้าน</p>
+                
+                <h3 class="section-subtitle">🚗 แยกตามพฤติกรรมและวัตถุประสงค์การใช้รถ</h3>
+                <div class="grid-2">
+                    <div class="chart-wrapper"><canvas id="chartUsageWork"></canvas></div>
+                    <div class="chart-wrapper"><canvas id="chartUsageLogistics"></canvas></div>
+                </div>
 
+                <h3 class="section-subtitle">🛠️ แยกตามหมวดหมู่งานซ่อมบำรุงและเคลมประกัน</h3>
+                <div class="grid-2">
+                    <div class="chart-wrapper"><canvas id="chartRepairBody"></canvas></div>
+                    <div class="chart-wrapper"><canvas id="chartRepairEngine"></canvas></div>
+                    <div class="chart-wrapper"><canvas id="chartRepairSuspension"></canvas></div>
+                    <div class="chart-wrapper"><canvas id="chartRepairElec"></canvas></div>
+                </div>
+            </section>
+
+            <div class="reference-box">
+                <strong style="color: #0366d6;">อ้างอิงข้อมูลทางสถิติ (Data References):</strong><br>
+                รายงานผลการสำรวจพฤติกรรมการเดินทาง (สนข.), ระบบรายงานปริมาณจราจร (กรมทางหลวง), ดัชนีการจดทะเบียนนิติบุคคลอู่ซ่อมรถมาตรฐาน (DBD) และสถิติการจ่ายสินไหมทดแทน (คปภ.)
+            </div>
+
+        </main>
         <footer>
             &copy; 2026 ศูนย์ข้อมูลสถิติการคมนาคม (Data Visualization Template)
         </footer>
     </div>
 
     <script>
-        // กำหนดฟอนต์มาตรฐาน
         Chart.defaults.font.family = 'Sarabun';
-
-        // 1. กราฟโดนัท (เหมือนเดิม)
-        const ctxPurpose = document.getElementById('tripPurposeChart').getContext('2d');
-        new Chart(ctxPurpose, {
-            type: 'doughnut',
-            data: {
-                labels: ['ทำงาน/ธุรกิจ', 'โลจิสติกส์', 'ศึกษา', 'ธุระทั่วไป'],
-                datasets: [{
-                    data: [52, 25, 13, 10],
-                    backgroundColor: ['#004b87', '#ff9800', '#4caf50', '#9c27b0'],
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    title: { display: true, text: 'สัดส่วนวัตถุประสงค์การใช้รถ (%)', font: { size: 14 } },
-                    legend: { position: 'bottom' }
-                }
-            }
-        });
-
-        // 2. กราฟเส้นการเดินทาง (เหมือนเดิม)
         const labels10Years = ['2560', '2561', '2562', '2563', '2564', '2565', '2566', '2567', '2568', '2569'];
-        const ctxCommute = document.getElementById('commuteTrendChart').getContext('2d');
-        new Chart(ctxCommute, {
-            type: 'line',
-            data: {
-                labels: labels10Years,
-                datasets: [{
-                    label: 'ปริมาณการขับไปทำงาน (ครั้ง/วัน)',
-                    data: [665000, 690000, 720000, 695000, 680000, 735000, 760000, 795000, 820000, 850000],
-                    borderColor: '#0366d6',
-                    backgroundColor: 'rgba(3, 102, 214, 0.1)',
-                    borderWidth: 2,
-                    fill: true,
-                    tension: 0.3
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    title: { display: true, text: 'แนวโน้มขับรถไปทำงาน 10 ปี', font: { size: 14 } }
-                }
-            }
-        });
 
-        // 3. ฟังก์ชันสร้างกราฟเส้นประแบบแยกย่อย
-        function createDashedChart(ctxId, label, data, color) {
-            const ctx = document.getElementById(ctxId).getContext('2d');
-            new Chart(ctx, {
+        // Helper Function สำหรับสร้างกราฟเส้นประ (Dashed Line Chart)
+        function createLineChart(ctxId, label, data, color, yAxisTitle) {
+            new Chart(document.getElementById(ctxId).getContext('2d'), {
                 type: 'line',
                 data: {
                     labels: labels10Years,
@@ -265,38 +218,55 @@
                         data: data,
                         borderColor: color,
                         borderWidth: 2,
-                        borderDash: [5, 5], // กำหนดให้เป็นเส้นประ
+                        borderDash: [6, 6], // ทำให้เป็นเส้นประ
                         pointBackgroundColor: '#fff',
                         pointBorderColor: color,
                         pointRadius: 4,
-                        fill: false, // ไม่ถมสีใต้กราฟเพื่อให้เส้นประชัดเจน
+                        fill: false,
                         tension: 0.3
                     }]
                 },
                 options: {
                     responsive: true,
                     plugins: {
-                        legend: { position: 'bottom' },
-                        title: { display: true, text: label + ' (ครั้ง/ปี)', font: { size: 14 } }
+                        title: { display: true, text: label, font: { size: 15 } },
+                        legend: { display: false },
+                        tooltip: { mode: 'index', intersect: false }
                     },
-                    scales: {
-                        y: { beginAtZero: false, suggestedMin: Math.min(...data) * 0.9 }
+                    scales: { 
+                        y: { 
+                            beginAtZero: false,
+                            title: { display: true, text: yAxisTitle }
+                        } 
                     }
                 }
             });
         }
 
-        // ข้อมูลสถิติแยกตามประเภท
-        const dataBodyPaint = [16400, 17400, 18400, 16400, 16000, 18000, 19600, 20800, 22000, 23200];
-        const dataEngine = [12300, 13050, 13800, 12300, 12000, 13500, 14700, 15600, 16500, 17400];
-        const dataSuspension = [8200, 8700, 9200, 8200, 8000, 9000, 9800, 10400, 11000, 11600];
-        const dataElectrical = [4100, 4350, 4600, 4100, 4000, 4500, 4900, 5200, 5500, 5800];
+        // ================= 1. ข้อมูลยอดรวม (ส่วนบน) =================
+        const dataTotalUsage = [880000, 920000, 965000, 945000, 945000, 1005000, 1040000, 1090000, 1125000, 1170000];
+        const dataTotalRepair = [41000, 43500, 46000, 41000, 40000, 45000, 49000, 52000, 55000, 58000];
 
-        // สร้างกราฟเส้นประ 4 กราฟแยกกัน
-        createDashedChart('chartBodyPaint', 'งานสีและตัวถัง (อุบัติเหตุ)', dataBodyPaint, '#e91e63');
-        createDashedChart('chartEngine', 'งานเครื่องยนต์/ระบบส่งกำลัง', dataEngine, '#ff9800');
-        createDashedChart('chartSuspension', 'งานช่วงล่าง/เบรก/ยาง', dataSuspension, '#2196f3');
-        createDashedChart('chartElectrical', 'งานระบบไฟฟ้าและอื่นๆ', dataElectrical, '#4caf50');
+        createLineChart('chartTotalUsage', 'ยอดรวมการใช้รถสุทธิ', dataTotalUsage, '#004b87', 'ทริป / วัน');
+        createLineChart('chartTotalRepair', 'ยอดรวมการซ่อมรถสุทธิ', dataTotalRepair, '#c2185b', 'ครั้ง / ปี');
+
+        // ================= 2. ข้อมูลเจาะลึกการใช้รถ (ส่วนล่าง) =================
+        const dataUsageWork = [665000, 690000, 720000, 695000, 680000, 735000, 760000, 795000, 820000, 850000];
+        const dataUsageLogistics = [215000, 230000, 245000, 250000, 265000, 270000, 280000, 295000, 305000, 320000];
+        
+        createLineChart('chartUsageWork', 'ขับรถไปทำงาน/ธุรกิจ', dataUsageWork, '#2196f3', 'ทริป / วัน');
+        createLineChart('chartUsageLogistics', 'ขนส่งสินค้า/โลจิสติกส์', dataUsageLogistics, '#ff9800', 'ทริป / วัน');
+
+        // ================= 3. ข้อมูลเจาะลึกการซ่อมรถ (ส่วนล่าง) =================
+        const dataRepairBody = [16400, 17400, 18400, 16400, 16000, 18000, 19600, 20800, 22000, 23200];
+        const dataRepairEngine = [12300, 13050, 13800, 12300, 12000, 13500, 14700, 15600, 16500, 17400];
+        const dataRepairSuspension = [8200, 8700, 9200, 8200, 8000, 9000, 9800, 10400, 11000, 11600];
+        const dataRepairElec = [4100, 4350, 4600, 4100, 4000, 4500, 4900, 5200, 5500, 5800];
+
+        createLineChart('chartRepairBody', 'งานสีและตัวถัง (อุบัติเหตุ)', dataRepairBody, '#e91e63', 'ครั้ง / ปี');
+        createLineChart('chartRepairEngine', 'งานเครื่องยนต์/ระบบส่งกำลัง', dataRepairEngine, '#009688', 'ครั้ง / ปี');
+        createLineChart('chartRepairSuspension', 'งานช่วงล่าง/เบรก/ยาง', dataRepairSuspension, '#4caf50', 'ครั้ง / ปี');
+        createLineChart('chartRepairElec', 'งานระบบไฟฟ้า/แอร์', dataRepairElec, '#9c27b0', 'ครั้ง / ปี');
 
     </script>
 </body>
