@@ -54,7 +54,9 @@
             border-left: 6px solid #3b82f6;
             padding-left: 15px;
             margin-bottom: 25px;
+            margin-top: 40px;
         }
+        h2:first-child { margin-top: 0; }
         
         h3.section-subtitle {
             color: #475569;
@@ -118,6 +120,12 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
             box-sizing: border-box;
             position: relative;
+        }
+
+        /* กล่องไฮไลต์สำหรับ 5 ปี */
+        .chart-wrapper.focus-5y {
+            border: 2px solid #cbd5e1;
+            background: #f8fafc;
         }
         
         table {
@@ -208,16 +216,25 @@
             </div>
 
             <section>
-                <h2>1. Executive Summary: 3D Market Trend</h2>
-                <p style="color: #64748b; font-size: 15px; margin-bottom: 25px;">กราฟแท่งแสดงปริมาณสุทธิ (Volume) เสริมด้วยกราฟเส้น (Trendline) เพื่อเน้นย้ำถึงอัตราเร่งและโมเมนตัมของตลาด</p>
+                <h2>1. Long-Term Overview: 10-Year Market Trend</h2>
+                <p style="color: #64748b; font-size: 15px; margin-bottom: 25px;">วิเคราะห์แนวโน้มภาพรวมระยะยาวตั้งแต่ พ.ศ. 2560 - 2569 เพื่อดูโครงสร้างพื้นฐานของตลาด</p>
                 <div class="grid-2">
-                    <div id="chartTotalUsage" class="chart-wrapper">กำลังโหลดกราฟ...</div>
-                    <div id="chartTotalRepair" class="chart-wrapper">กำลังโหลดกราฟ...</div>
+                    <div id="chartTotalUsage10Y" class="chart-wrapper">กำลังโหลดกราฟ...</div>
+                    <div id="chartTotalRepair10Y" class="chart-wrapper">กำลังโหลดกราฟ...</div>
                 </div>
             </section>
 
             <section>
-                <h2>2. Data Matrix (พ.ศ. 2560 - 2569)</h2>
+                <h2>2. Short-Term Focus: 5-Year Recent Trend (2564 - 2568)</h2>
+                <p style="color: #64748b; font-size: 15px; margin-bottom: 25px;">เจาะลึกเฉพาะช่วง 5 ปี (พ.ศ. 2564 - 2568) เพื่อวิเคราะห์อัตราเร่ง (Momentum) และการฟื้นตัวของตลาด (Recovery Phase)</p>
+                <div class="grid-2">
+                    <div id="chartTotalUsage5Y" class="chart-wrapper focus-5y">กำลังโหลดกราฟ...</div>
+                    <div id="chartTotalRepair5Y" class="chart-wrapper focus-5y">กำลังโหลดกราฟ...</div>
+                </div>
+            </section>
+
+            <section>
+                <h2>3. Data Matrix (พ.ศ. 2560 - 2569)</h2>
                 <div style="overflow-x: auto;">
                     <table>
                         <thead>
@@ -239,11 +256,11 @@
                         </thead>
                         <tbody>
                             <tr><td>2569</td><td class="highlight-col">1,170,000</td><td>850,000</td><td>320,000</td><td class="highlight-col-2">58,000</td><td>23,200</td><td>17,400</td><td>11,600</td><td>5,800</td></tr>
-                            <tr><td>2568</td><td class="highlight-col">1,125,000</td><td>820,000</td><td>305,000</td><td class="highlight-col-2">55,000</td><td>22,000</td><td>16,500</td><td>11,000</td><td>5,500</td></tr>
-                            <tr><td>2567</td><td class="highlight-col">1,090,000</td><td>795,000</td><td>295,000</td><td class="highlight-col-2">52,000</td><td>20,800</td><td>15,600</td><td>10,400</td><td>5,200</td></tr>
-                            <tr><td>2566</td><td class="highlight-col">1,040,000</td><td>760,000</td><td>280,000</td><td class="highlight-col-2">49,000</td><td>19,600</td><td>14,700</td><td>9,800</td><td>4,900</td></tr>
-                            <tr><td>2565</td><td class="highlight-col">1,005,000</td><td>735,000</td><td>270,000</td><td class="highlight-col-2">45,000</td><td>18,000</td><td>13,500</td><td>9,000</td><td>4,500</td></tr>
-                            <tr><td>2564</td><td class="highlight-col">945,000</td><td>680,000</td><td>265,000</td><td class="highlight-col-2">40,000</td><td>16,000</td><td>12,000</td><td>8,000</td><td>4,000</td></tr>
+                            <tr style="background-color: #f8fafc;"><td>2568</td><td class="highlight-col">1,125,000</td><td>820,000</td><td>305,000</td><td class="highlight-col-2">55,000</td><td>22,000</td><td>16,500</td><td>11,000</td><td>5,500</td></tr>
+                            <tr style="background-color: #f8fafc;"><td>2567</td><td class="highlight-col">1,090,000</td><td>795,000</td><td>295,000</td><td class="highlight-col-2">52,000</td><td>20,800</td><td>15,600</td><td>10,400</td><td>5,200</td></tr>
+                            <tr style="background-color: #f8fafc;"><td>2566</td><td class="highlight-col">1,040,000</td><td>760,000</td><td>280,000</td><td class="highlight-col-2">49,000</td><td>19,600</td><td>14,700</td><td>9,800</td><td>4,900</td></tr>
+                            <tr style="background-color: #f8fafc;"><td>2565</td><td class="highlight-col">1,005,000</td><td>735,000</td><td>270,000</td><td class="highlight-col-2">45,000</td><td>18,000</td><td>13,500</td><td>9,000</td><td>4,500</td></tr>
+                            <tr style="background-color: #f8fafc;"><td>2564</td><td class="highlight-col">945,000</td><td>680,000</td><td>265,000</td><td class="highlight-col-2">40,000</td><td>16,000</td><td>12,000</td><td>8,000</td><td>4,000</td></tr>
                             <tr><td>2563</td><td class="highlight-col">945,000</td><td>695,000</td><td>250,000</td><td class="highlight-col-2">41,000</td><td>16,400</td><td>12,300</td><td>8,200</td><td>4,100</td></tr>
                             <tr><td>2562</td><td class="highlight-col">965,000</td><td>720,000</td><td>245,000</td><td class="highlight-col-2">46,000</td><td>18,400</td><td>13,800</td><td>9,200</td><td>4,600</td></tr>
                             <tr><td>2561</td><td class="highlight-col">920,000</td><td>690,000</td><td>230,000</td><td class="highlight-col-2">43,500</td><td>17,400</td><td>13,050</td><td>8,700</td><td>4,350</td></tr>
@@ -264,7 +281,7 @@
             </section>
 
             <section>
-                <h2>3. Market Segmentation Analysis (3D Combo View)</h2>
+                <h2>4. Market Segmentation Analysis (10-Year View)</h2>
                 <p style="color: #64748b; font-size: 15px;">การแตกย่อยพอร์ตโฟลิโอตามแหล่งที่มาของ Demand เพื่อหาโอกาสทางธุรกิจเชิงลึก</p>
                 
                 <h3 class="section-subtitle">Usage Demand (แยกตามวัตถุประสงค์การใช้รถ)</h3>
@@ -296,19 +313,21 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             
-            // ตั้งค่า Highcharts
             Highcharts.setOptions({
-                chart: {
-                    style: { fontFamily: 'Sarabun, sans-serif' }
-                },
+                chart: { style: { fontFamily: 'Sarabun, sans-serif' } },
                 lang: { thousandsSep: ',' },
                 credits: { enabled: false }
             });
 
+            // สร้างชุดข้อมูลแกน X แบบ 10 ปี
+            // ลำดับ Index: 0=2560, 1=2561, 2=2562, 3=2563, 4=2564, 5=2565, 6=2566, 7=2567, 8=2568, 9=2569
             const labels10Years = ['2560', '2561', '2562', '2563', '2564', '2565', '2566', '2567', '2568', '2569'];
+            
+            // สร้างชุดข้อมูลแกน X แบบ 5 ปี (ช่วง 2564 - 2568)
+            const labels5Years = ['2564', '2565', '2566', '2567', '2568'];
 
-            // ฟังก์ชันสร้างกราฟแท่ง 3 มิติ ผสม กราฟเส้น 
-            function create3DComboChart(containerId, titleText, dataArray, themeColor, yAxisTitle) {
+            // ปรับฟังก์ชันให้รับค่า labelsArray แบบไดนามิก (สำหรับ 5 ปี และ 10 ปี)
+            function create3DComboChart(containerId, titleText, labelsArray, dataArray, themeColor, yAxisTitle) {
                 Highcharts.chart(containerId, {
                     chart: {
                         backgroundColor: 'transparent',
@@ -326,13 +345,13 @@
                         style: { fontSize: '15px', fontWeight: 'bold', color: '#0f172a' }
                     },
                     xAxis: {
-                        categories: labels10Years,
+                        categories: labelsArray,
                         labels: { style: { color: '#64748b', fontWeight: 'bold' } }
                     },
                     yAxis: {
                         title: { text: yAxisTitle, style: { color: '#94a3b8', fontWeight: 'bold' } },
                         gridLineColor: '#f1f5f9',
-                        labels: { enabled: false } // <--- คำสั่งซ่อนตัวเลขสเกลบนแกน Y
+                        labels: { enabled: false } // ซ่อนตัวเลขแกน Y
                     },
                     plotOptions: {
                         column: {
@@ -372,40 +391,43 @@
                         itemStyle: { color: '#475569', fontWeight: 'bold' }
                     },
                     series: [
-                        {
-                            type: 'column',
-                            name: 'ปริมาณ (Volume)',
-                            data: dataArray
-                        }, 
-                        {
-                            type: 'spline',
-                            name: 'แนวโน้ม (Trendline)',
-                            data: dataArray
-                        }
+                        { type: 'column', name: 'ปริมาณ (Volume)', data: dataArray }, 
+                        { type: 'spline', name: 'แนวโน้ม (Trendline)', data: dataArray }
                     ]
                 });
             }
 
-            // ข้อมูลชุดต่างๆ
-            const dataTotalUsage = [880000, 920000, 965000, 945000, 945000, 1005000, 1040000, 1090000, 1125000, 1170000];
-            const dataTotalRepair = [41000, 43500, 46000, 41000, 40000, 45000, 49000, 52000, 55000, 58000];
-            const dataUsageWork = [665000, 690000, 720000, 695000, 680000, 735000, 760000, 795000, 820000, 850000];
-            const dataUsageLogistics = [215000, 230000, 245000, 250000, 265000, 270000, 280000, 295000, 305000, 320000];
-            const dataRepairBody = [16400, 17400, 18400, 16400, 16000, 18000, 19600, 20800, 22000, 23200];
-            const dataRepairEngine = [12300, 13050, 13800, 12300, 12000, 13500, 14700, 15600, 16500, 17400];
-            const dataRepairSuspension = [8200, 8700, 9200, 8200, 8000, 9000, 9800, 10400, 11000, 11600];
-            const dataRepairElec = [4100, 4350, 4600, 4100, 4000, 4500, 4900, 5200, 5500, 5800];
+            // ข้อมูลชุดต่างๆ 10 ปี
+            const dataTotalUsage10 = [880000, 920000, 965000, 945000, 945000, 1005000, 1040000, 1090000, 1125000, 1170000];
+            const dataTotalRepair10 = [41000, 43500, 46000, 41000, 40000, 45000, 49000, 52000, 55000, 58000];
+            const dataUsageWork10 = [665000, 690000, 720000, 695000, 680000, 735000, 760000, 795000, 820000, 850000];
+            const dataUsageLogistics10 = [215000, 230000, 245000, 250000, 265000, 270000, 280000, 295000, 305000, 320000];
+            const dataRepairBody10 = [16400, 17400, 18400, 16400, 16000, 18000, 19600, 20800, 22000, 23200];
+            const dataRepairEngine10 = [12300, 13050, 13800, 12300, 12000, 13500, 14700, 15600, 16500, 17400];
+            const dataRepairSuspension10 = [8200, 8700, 9200, 8200, 8000, 9000, 9800, 10400, 11000, 11600];
+            const dataRepairElec10 = [4100, 4350, 4600, 4100, 4000, 4500, 4900, 5200, 5500, 5800];
 
-            create3DComboChart('chartTotalUsage', 'Total Traffic Volume', dataTotalUsage, '#1e40af', 'ทริป / วัน'); 
-            create3DComboChart('chartTotalRepair', 'Total Service Demands', dataTotalRepair, '#be123c', 'ครั้ง / ปี'); 
+            // ดึงข้อมูล 5 ปี (ช่วงปี 2564 - 2568)
+            // ใช้ .slice(4, 9) เพื่อดึงข้อมูลตำแหน่งที่ 4 ถึง 8 (2564 ถึง 2568) จากอาร์เรย์ 10 ปี
+            const dataTotalUsage5 = dataTotalUsage10.slice(4, 9);
+            const dataTotalRepair5 = dataTotalRepair10.slice(4, 9);
 
-            create3DComboChart('chartUsageWork', 'Commuting & Business', dataUsageWork, '#0ea5e9', 'ทริป / วัน'); 
-            create3DComboChart('chartUsageLogistics', 'Logistics & Commercial', dataUsageLogistics, '#f59e0b', 'ทริป / วัน'); 
+            // ================= สร้างกราฟภาพรวม 10 ปี =================
+            create3DComboChart('chartTotalUsage10Y', 'Total Traffic Volume (10Y Trend)', labels10Years, dataTotalUsage10, '#1e40af', 'ทริป / วัน'); 
+            create3DComboChart('chartTotalRepair10Y', 'Total Service Demands (10Y Trend)', labels10Years, dataTotalRepair10, '#be123c', 'ครั้ง / ปี'); 
 
-            create3DComboChart('chartRepairBody', 'Accident & Body Paint', dataRepairBody, '#e11d48', 'ครั้ง / ปี'); 
-            create3DComboChart('chartRepairEngine', 'Powertrain & Engine', dataRepairEngine, '#0f766e', 'ครั้ง / ปี'); 
-            create3DComboChart('chartRepairSuspension', 'Suspension & Tires', dataRepairSuspension, '#65a30d', 'ครั้ง / ปี'); 
-            create3DComboChart('chartRepairElec', 'Electrical & A/C Systems', dataRepairElec, '#7c3aed', 'ครั้ง / ปี'); 
+            // ================= สร้างกราฟภาพรวม 5 ปี (2564-2568) =================
+            create3DComboChart('chartTotalUsage5Y', '5-Year Volume Growth (2564-2568)', labels5Years, dataTotalUsage5, '#2563eb', 'ทริป / วัน'); 
+            create3DComboChart('chartTotalRepair5Y', '5-Year Service Growth (2564-2568)', labels5Years, dataTotalRepair5, '#e11d48', 'ครั้ง / ปี'); 
+
+            // ================= สร้างกราฟเจาะลึก 10 ปี (หมวดหมู่) =================
+            create3DComboChart('chartUsageWork', 'Commuting & Business', labels10Years, dataUsageWork10, '#0ea5e9', 'ทริป / วัน'); 
+            create3DComboChart('chartUsageLogistics', 'Logistics & Commercial', labels10Years, dataUsageLogistics10, '#f59e0b', 'ทริป / วัน'); 
+
+            create3DComboChart('chartRepairBody', 'Accident & Body Paint', labels10Years, dataRepairBody10, '#e11d48', 'ครั้ง / ปี'); 
+            create3DComboChart('chartRepairEngine', 'Powertrain & Engine', labels10Years, dataRepairEngine10, '#0f766e', 'ครั้ง / ปี'); 
+            create3DComboChart('chartRepairSuspension', 'Suspension & Tires', labels10Years, dataRepairSuspension10, '#65a30d', 'ครั้ง / ปี'); 
+            create3DComboChart('chartRepairElec', 'Electrical & A/C Systems', labels10Years, dataRepairElec10, '#7c3aed', 'ครั้ง / ปี'); 
             
         });
     </script>
