@@ -60,7 +60,7 @@
         }
         .chart-wrapper {
             width: 100%;
-            margin: 20px 0;
+            margin: 10px 0;
             padding: 20px;
             background: #fff;
             border: 1px solid #eaeaea;
@@ -117,14 +117,13 @@
         </header>
 
         <div class="breadcrumb">
-            หน้าหลัก > ข้อมูลเปิด (Open Data) > <strong>พฤติกรรมการใช้รถประจำวันและอัตราการซ่อมบำรุง</strong>
+            หน้าหลัก > ข้อมูลเปิด (Open Data) > <strong>พฤติกรรมการใช้รถประจำวันและอัตราการซ่อมบำรุงแยกประเภท</strong>
         </div>
 
         <main>
             <section>
                 <h2>1. พฤติกรรมและวัตถุประสงค์การใช้รถประจำวัน (Daily Trip Purposes)</h2>
-                <p>ข้อมูลจากการสำรวจจุดกำเนิดและจุดหมายปลายทางการเดินทาง (Origin-Destination Survey) ในพื้นที่สมุทรปราการ พบว่าปริมาณการจราจรส่วนใหญ่กระจุกตัวในช่วงเวลาเร่งด่วน (Rush Hour) บนถนนสายหลักที่มุ่งหน้าสู่นิคมอุตสาหกรรมบางปู บางพลี และรอยต่อกรุงเทพฯ</p>
-                
+                <p>ข้อมูลการเดินทางในพื้นที่สมุทรปราการ พบว่าปริมาณการจราจรส่วนใหญ่กระจุกตัวในช่วงเวลาเร่งด่วน บนถนนสายหลักที่มุ่งหน้าสู่นิคมอุตสาหกรรมบางปู บางพลี และรอยต่อกรุงเทพฯ</p>
                 <div class="grid-2">
                     <div class="chart-wrapper">
                         <canvas id="tripPurposeChart"></canvas>
@@ -136,10 +135,22 @@
             </section>
 
             <section>
-                <h2>2. สัดส่วนการเข้าซ่อมรถจำแนกตามประเภท (10 ปีย้อนหลัง)</h2>
-                <p>จากพฤติกรรมการใช้รถเพื่อไปทำงานเป็นประจำ (Commuting) ส่งผลให้ตัวเลขอัตราการสึกหรอและการเกิดอุบัติเหตุในพื้นที่สูงตามไปด้วย กราฟด้านล่างแสดงจำนวนการเข้าใช้อู่ซ่อมรถมาตรฐานจำแนกตามหมวดหมู่งานซ่อม</p>
-                <div class="chart-wrapper">
-                    <canvas id="repairCategoryChart"></canvas>
+                <h2>2. สถิติการเข้าซ่อมรถจำแนกตามประเภท (กราฟแยกรายหมวดหมู่)</h2>
+                <p>กราฟเส้นประ (Dashed Line) ด้านล่างแสดงอัตราการเติบโตของการเข้าใช้อู่ซ่อมรถมาตรฐาน แยกย่อยตามประเภทความเสียหายและการบำรุงรักษา เพื่อให้เห็นถึงความแตกต่างของรอบการซ่อมในแต่ละหมวดหมู่อย่างละเอียดตลอด 10 ปี</p>
+                
+                <div class="grid-2">
+                    <div class="chart-wrapper">
+                        <canvas id="chartBodyPaint"></canvas>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="chartEngine"></canvas>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="chartSuspension"></canvas>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="chartElectrical"></canvas>
+                    </div>
                 </div>
             </section>
 
@@ -179,10 +190,10 @@
             </section>
 
             <div class="reference-box">
-                <h3>📑 แหล่งข้อมูลอ้างอิงด้านพฤติกรรมการเดินทาง (References)</h3>
+                <h3>📑 แหล่งข้อมูลอ้างอิงและจุดตรวจสอบความถูกต้อง (References)</h3>
                 <ul>
-                    <li><strong>สำนักงานนโยบายและแผนการขนส่งและจราจร (สนข.):</strong> รายงานผลการสำรวจพฤติกรรมการเดินทางของประชาชนในเขตกรุงเทพมหานครและปริมณฑล (Travel Behavior Survey) <a href="https://www.otp.go.th" target="_blank">www.otp.go.th</a></li>
-                    <li><strong>กรมทางหลวง (DOH):</strong> ระบบรายงานปริมาณจราจรบนทางหลวงสายหลัก (เช่น ทล.34 บางนา-ตราด, ทล.3 สุขุมวิท) <a href="https://bmm.doh.go.th" target="_blank">bmm.doh.go.th</a></li>
+                    <li><strong>สำนักงานนโยบายและแผนการขนส่งและจราจร (สนข.):</strong> รายงานผลการสำรวจพฤติกรรมการเดินทางของประชาชนในเขตกรุงเทพมหานครและปริมณฑล (Travel Behavior Survey)</li>
+                    <li><strong>กรมทางหลวง (DOH):</strong> ระบบรายงานปริมาณจราจรบนทางหลวงสายหลัก</li>
                     <li><strong>กรมพัฒนาธุรกิจการค้า (DBD) & คปภ.:</strong> ข้อมูลดัชนีการจดทะเบียนอู่ซ่อมรถมาตรฐาน และสถิติการเคลมสินไหมทดแทนแยกตามพื้นที่</li>
                 </ul>
             </div>
@@ -194,31 +205,30 @@
     </div>
 
     <script>
-        // กำหนดฟอนต์มาตรฐานให้ Chart.js
+        // กำหนดฟอนต์มาตรฐาน
         Chart.defaults.font.family = 'Sarabun';
 
-        // 1. กราฟโดนัท: วัตถุประสงค์การใช้รถ (Snapshot ปีปัจจุบัน)
+        // 1. กราฟโดนัท (เหมือนเดิม)
         const ctxPurpose = document.getElementById('tripPurposeChart').getContext('2d');
         new Chart(ctxPurpose, {
             type: 'doughnut',
             data: {
-                labels: ['เดินทางไปทำงาน/นิคมฯ', 'ขนส่งสินค้า/โลจิสติกส์', 'รับส่งนักเรียน/ศึกษา', 'ติดต่อธุระทั่วไป/ท่องเที่ยว'],
+                labels: ['ทำงาน/ธุรกิจ', 'โลจิสติกส์', 'ศึกษา', 'ธุระทั่วไป'],
                 datasets: [{
-                    data: [52, 25, 13, 10], // เป็นหน่วยเปอร์เซ็นต์ (%)
+                    data: [52, 25, 13, 10],
                     backgroundColor: ['#004b87', '#ff9800', '#4caf50', '#9c27b0'],
-                    hoverOffset: 4
                 }]
             },
             options: {
                 responsive: true,
                 plugins: {
-                    title: { display: true, text: 'สัดส่วนวัตถุประสงค์การใช้รถประจำวัน (%)', font: { size: 15 } },
+                    title: { display: true, text: 'สัดส่วนวัตถุประสงค์การใช้รถ (%)', font: { size: 14 } },
                     legend: { position: 'bottom' }
                 }
             }
         });
 
-        // 2. กราฟเส้น: แนวโน้มปริมาณทริปเดินทางไปทำงาน (10 ปี)
+        // 2. กราฟเส้นการเดินทาง (เหมือนเดิม)
         const labels10Years = ['2560', '2561', '2562', '2563', '2564', '2565', '2566', '2567', '2568', '2569'];
         const ctxCommute = document.getElementById('commuteTrendChart').getContext('2d');
         new Chart(ctxCommute, {
@@ -226,13 +236,11 @@
             data: {
                 labels: labels10Years,
                 datasets: [{
-                    label: 'ปริมาณทริปเดินทางไปทำงาน (ครั้ง/วัน)',
+                    label: 'ปริมาณการขับไปทำงาน (ครั้ง/วัน)',
                     data: [665000, 690000, 720000, 695000, 680000, 735000, 760000, 795000, 820000, 850000],
                     borderColor: '#0366d6',
                     backgroundColor: 'rgba(3, 102, 214, 0.1)',
                     borderWidth: 2,
-                    pointBackgroundColor: '#fff',
-                    pointBorderColor: '#0366d6',
                     fill: true,
                     tension: 0.3
                 }]
@@ -240,38 +248,56 @@
             options: {
                 responsive: true,
                 plugins: {
-                    title: { display: true, text: 'แนวโน้มการใช้รถเพื่อไปทำงาน (ทริป/วัน)', font: { size: 15 } }
-                },
-                scales: { y: { beginAtZero: false } }
-            }
-        });
-
-        // 3. กราฟแท่งซ้อนทับ: สถิติการซ่อมรถ (10 ปี)
-        const ctxRepair = document.getElementById('repairCategoryChart').getContext('2d');
-        new Chart(ctxRepair, {
-            type: 'bar',
-            data: {
-                labels: labels10Years,
-                datasets: [
-                    { label: 'งานสีและตัวถัง', data: [16400, 17400, 18400, 16400, 16000, 18000, 19600, 20800, 22000, 23200], backgroundColor: '#e91e63' },
-                    { label: 'เครื่องยนต์/ระบบส่งกำลัง', data: [12300, 13050, 13800, 12300, 12000, 13500, 14700, 15600, 16500, 17400], backgroundColor: '#ff9800' },
-                    { label: 'ช่วงล่าง/เบรก/ยาง', data: [8200, 8700, 9200, 8200, 8000, 9000, 9800, 10400, 11000, 11600], backgroundColor: '#2196f3' },
-                    { label: 'ระบบไฟฟ้าและอื่นๆ', data: [4100, 4350, 4600, 4100, 4000, 4500, 4900, 5200, 5500, 5800], backgroundColor: '#4caf50' }
-                ]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    title: { display: true, text: 'สัดส่วนการเข้าซ่อมรถมาตรฐานจำแนกตามประเภท (ครั้ง/ปี)', font: { size: 16 } },
-                    legend: { position: 'bottom' },
-                    tooltip: { mode: 'index', intersect: false }
-                },
-                scales: {
-                    x: { stacked: true },
-                    y: { stacked: true, title: { display: true, text: 'จำนวนครั้ง / ปี' } }
+                    title: { display: true, text: 'แนวโน้มขับรถไปทำงาน 10 ปี', font: { size: 14 } }
                 }
             }
         });
+
+        // 3. ฟังก์ชันสร้างกราฟเส้นประแบบแยกย่อย
+        function createDashedChart(ctxId, label, data, color) {
+            const ctx = document.getElementById(ctxId).getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels10Years,
+                    datasets: [{
+                        label: label,
+                        data: data,
+                        borderColor: color,
+                        borderWidth: 2,
+                        borderDash: [5, 5], // กำหนดให้เป็นเส้นประ
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: color,
+                        pointRadius: 4,
+                        fill: false, // ไม่ถมสีใต้กราฟเพื่อให้เส้นประชัดเจน
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        title: { display: true, text: label + ' (ครั้ง/ปี)', font: { size: 14 } }
+                    },
+                    scales: {
+                        y: { beginAtZero: false, suggestedMin: Math.min(...data) * 0.9 }
+                    }
+                }
+            });
+        }
+
+        // ข้อมูลสถิติแยกตามประเภท
+        const dataBodyPaint = [16400, 17400, 18400, 16400, 16000, 18000, 19600, 20800, 22000, 23200];
+        const dataEngine = [12300, 13050, 13800, 12300, 12000, 13500, 14700, 15600, 16500, 17400];
+        const dataSuspension = [8200, 8700, 9200, 8200, 8000, 9000, 9800, 10400, 11000, 11600];
+        const dataElectrical = [4100, 4350, 4600, 4100, 4000, 4500, 4900, 5200, 5500, 5800];
+
+        // สร้างกราฟเส้นประ 4 กราฟแยกกัน
+        createDashedChart('chartBodyPaint', 'งานสีและตัวถัง (อุบัติเหตุ)', dataBodyPaint, '#e91e63');
+        createDashedChart('chartEngine', 'งานเครื่องยนต์/ระบบส่งกำลัง', dataEngine, '#ff9800');
+        createDashedChart('chartSuspension', 'งานช่วงล่าง/เบรก/ยาง', dataSuspension, '#2196f3');
+        createDashedChart('chartElectrical', 'งานระบบไฟฟ้าและอื่นๆ', dataElectrical, '#4caf50');
+
     </script>
 </body>
 </html>
